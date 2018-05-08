@@ -20,8 +20,9 @@ class JingdongPipeline(object):
                                     )
         cur = self.conn.cursor()
         cur.execute("USE jd")
+
         cur.execute(
-            "CREATE TABLE computer(id INT PRIMARY KEY AUTO_INCREMENT,title VARCHAR(100),link VARCHAR(50),price VARCHAR(50),comment VARCHAR(50))")
+            "CREATE TABLE IF NOT EXISTS computer(id INT PRIMARY KEY AUTO_INCREMENT,title VARCHAR(100),link VARCHAR(50),price VARCHAR(50),comment VARCHAR(50))")
         self.conn.commit()
 
     def process_item(self, item, jd):
