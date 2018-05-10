@@ -1,0 +1,6 @@
+city:成都
+
+date:05-08		day:中雨(23°C )		night:阴( 17°C)
+
+date:05-09		day:中雨(19°C )		night:中雨( 18°C)
+
