@@ -19,21 +19,20 @@ class WeatherSpider(scrapy.Spider):
         html_doc = response.body
         #html_doc = html_doc.decode('utf-8')
         soup = BeautifulSoup(html_doc)
-        itemTemp = {}
-        itemTemp['city'] = soup.find(id='slider_ct_name')
-        tenDay = soup.find(id='blk_fc_c0_scroll')
-        itemTemp['date'] = tenDay.findAll("p", {"class": 'wt_fc_c0_i_date'})
-        itemTemp['dayDesc'] = tenDay.findAll("img", {"class": 'icons0_wt'})
-        itemTemp['dayTemp'] = tenDay.findAll('p', {"class": 'wt_fc_c0_i_temp'})
+        item_temp = {}
+        item_temp['city'] = soup.find(id='slider_ct_name')
+        #信息根节点
+        ten_day = soup.find(id='blk_fc_c0_scroll')
+        item_temp['date'] = ten_day.findAll("p", {"class": 'wt_fc_c0_i_date'})
+        item_temp['day_desc'] = ten_day.findAll("p", {"class": 'wt_fc_c0_i_tip'})
+        item_temp['day_temp'] = ten_day.findAll('p', {"class": 'wt_fc_c0_i_temp'})
+        #print(all_day_temp)
         item = WeatherItem()
-        for att in itemTemp:
+        for att in item_temp:
             item[att] = []
             if att == 'city':
-                item[att] = itemTemp.get(att).text
+                item[att] = item_temp.get(att).text
                 continue
-            for obj in itemTemp.get(att):
-                if att == 'dayDesc':
-                    item[att].append(obj['title'])
-                else:
-                    item[att].append(obj.text)
+            for obj in item_temp.get(att):
+                item[att].append(obj.text)
         return item

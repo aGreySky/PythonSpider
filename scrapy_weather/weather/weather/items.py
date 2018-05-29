@@ -14,7 +14,8 @@ class WeatherItem(scrapy.Item):
     #日期<div id：blk_fc_c0_scroll>/<p class:wt_fc_c0_i_date>
     date = scrapy.Field()
     #天气描述<div id：blk_fc_c0_scroll>/<img class:icons0_wt>
-    dayDesc = scrapy.Field()
-    # 温度<div id：blk_fc_c0_scroll>/<p class:wt_fc_c0_i_temp>
-    dayTemp = scrapy.Field()
-    pass
+    day_desc = scrapy.Field()
+    #温度<div id：blk_fc_c0_scroll>/<p class:wt_fc_c0_i_temp>
+    day_temp = scrapy.Field()
+
+
